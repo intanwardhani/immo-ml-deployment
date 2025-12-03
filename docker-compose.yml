@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: immo_fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app/api
+      - ./models:/app/models
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: streamlit/Dockerfile
+    container_name: immo_streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./streamlit:/app/streamlit
+    environment:
+      - API_URL=http://fastapi:8000
+    depends_on:
+      - fastapi
+    restart: unless-stopped
