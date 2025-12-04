@@ -5,9 +5,8 @@
 
 import os
 
-# BASE_DIR should be project root (one level above api/)
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 
-# Default model file name (just the filename, not full path)
-DEFAULT_MODEL = "XGBoost_pipeline.pkl"
+# Default = latest version symlink
+DEFAULT_MODEL = os.path.join(MODEL_DIR, "XGBoost_pipeline_latest.pkl")
