@@ -19,6 +19,10 @@ This is part of the Machine Learning solo project at BeCode Data Science &amp; A
 - Complete UI design
 - Adjust FastAPI and streamlit services
 - Create a Makefile (hybrid Docker + non-Docker containerisation)
+- Version models and connect the training repo with this repo
+
+--- Day 4 (4 Dec 2025) ---
+- 
 
 
 # How To Run
@@ -31,7 +35,7 @@ To run both services (the API and streamlit), run the following command in the p
 Models were trained in the [https://github.com/intanwardhani/immo-ML-project](related) repository and copied here into the `models/` folder.
 
 ```markdown
-immo-ML-deployment/
+immo-ml-deployment/
 │
 ├── api/
 │   ├── __init__.py
@@ -44,9 +48,9 @@ immo-ML-deployment/
 │   └── README.md
 │
 ├── models/
-│   ├── RandomForest_pipeline.pkl
-│   ├── Ridge_pipeline.pkl
-│   ├── XGBoost_pipeline.pkl
+│   ├── RandomForest_pipeline_latest.pkl
+│   ├── Ridge_pipeline_latest.pkl
+│   ├── XGBoost_pipeline_latest.pkl
 │   └── README.md
 │
 ├── streamlit/

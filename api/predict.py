@@ -38,10 +38,16 @@ def predict(data, pipeline=None, model_path=None):
     else:
         df = pd.DataFrame(data)
 
+    # Convert yes/no strings to binary (optional safety)
+    binary_cols = ["swimming_pool", "garden", "terrace"]
+    for col in binary_cols:
+        if col in df.columns:
+            df[col] = df[col].apply(lambda x: 1 if str(x).strip().lower() in ["yes","y","true","1"] else 0 if str(x).strip().lower() in ["no","n","false","0"] else x)
+
     preds = pipeline.predict(df)
 
-    # Inverse log-transform if model is Ridge (based on file name)
-    if hasattr(pipeline.named_steps["regressor"], "alpha"):  # Ridge model
+    # Inverse log-transform if Ridge
+    if hasattr(pipeline.named_steps["regressor"], "alpha"):
         preds = np.expm1(preds)
 
     return preds
@@ -64,3 +70,7 @@ if __name__ == "__main__":
     }
 
     print("Prediction:", predict(sample))
+  
+
+    
+
