@@ -2,7 +2,7 @@
 Machine learning and deployment were new to me. No doubt, it was daunting and a very intense learning process. However, more than anything, it challenged my patience, conscientiousness, grit, and adaptability in learning something new, complex, and outside of my comfort zone. This project has provided me with not only some hands-on fundamentals of machine-learning and (somewhat) production-ready deployment, but also the structural thinking to tackle future projects. I still have many things to learn and practise (always do), but now I feel equipped to do just that :wink:
 
 # Overview
-This is part of the Machine Learning solo project at BeCode Data Science &amp; AI Bootcamp 2025. This deployment repository is auto-synced with my training repository (link). This autosync allows model trainings to be done separately in the training repo with each recently-trained model versioned and pushed automatically into this deployment repo.
+This is part of the Machine Learning solo project at BeCode Data Science &amp; AI Bootcamp 2025. This deployment repository is auto-synced with my <training repository: https://github.com/intanwardhani/immo-ml-training>. This autosync allows model trainings to be done separately in the training repo with each recently-trained model versioned and pushed automatically into this deployment repo.
 
 # Timeline
 --- Day 1 (1 Dec 2025) ---
