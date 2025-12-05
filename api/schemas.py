@@ -7,19 +7,19 @@ from pydantic import BaseModel, field_validator
 from typing import List
 
 class PredictionRequest(BaseModel):
-    build_year: float
-    build_year_cat: str
-    building_state: str
-    facades: float
-    garden: int
-    living_area: float
-    locality_name: str
-    number_bedrooms: float
-    postal_code: float
-    property_type: str
-    province: str
-    swimming_pool: int
-    terrace: float
+    build_year: float = 2023.0
+    build_year_cat: str = "2020s"
+    building_state: str = "Good"
+    facades: float = 2.0
+    garden: int = 1
+    living_area: float = 120.0
+    locality_name: str = "Namur"
+    number_bedrooms: float = 3.0
+    postal_code: float = 5000.0
+    property_type: str = "Apartment"
+    province: str = "Namur"
+    swimming_pool: int = 0
+    terrace: float = 1.0
     
     # ------------------------
     # Binary field conversion
