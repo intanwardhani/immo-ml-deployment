@@ -37,7 +37,6 @@ def model_version():
     Returns the version name of the current default model.
     """
 
-    # DEFAULT_MODEL is a symlink → follow it
     model_path = os.path.realpath(DEFAULT_MODEL)
 
     version_name = os.path.basename(model_path)
