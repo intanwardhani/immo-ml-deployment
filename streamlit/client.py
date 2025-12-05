@@ -1,10 +1,9 @@
 # UTF-8 Python 3.13.5
 # Author: Intan K. Wardhani
-# Last modified: 03-12-2025
+# Last modified: 05-12-2025
 
 
 import requests
-import os
 
 # ================================
 # CHANGES:
@@ -15,13 +14,14 @@ import os
 # 3. Added better error handling
 # ================================
 
-API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+API_URL = "http://127.0.0.1:8000"
 
 def call_api(model_name: str, payload: dict):
     # Ensure model filename is used (e.g., "XGBoost_pipeline.pkl")
-    url = f"{API_URL}/predict?model={model_name}"
+    
     
     try:
+        url = f"{API_URL}/predict/{model_name}"
         response = requests.post(url, json=payload, timeout=10)
 
         if response.status_code != 200:
@@ -33,6 +33,4 @@ def call_api(model_name: str, payload: dict):
     
     except Exception as e:
         return {"error": f"Connection failed: {str(e)}"}
-
-    
 

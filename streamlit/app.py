@@ -1,11 +1,12 @@
 # UTF-8 Python 3.13.5
 # Author: Intan K. Wardhani
-# Last modified: 02-12-2025
+# Last modified: 05-12-2025
 
 
 import streamlit as st
 from client import call_api
 from utils import yes_no_to_binary
+from config import BUILDING_STATES, BUILD_YEAR_CATS, LOCALITY_NAMES, PROPERTY_TYPES, PROVINCES
 
 st.set_page_config(page_title="How much would you have to pay?", layout="centered")
 
@@ -18,40 +19,19 @@ st.write("Fill out the form below to estimate the property price.")
 # make it default to XGBoost
 # model_name = st.selectbox(
 #     "Select Model",
-#     ["Ridge", "RandomForest", "XGBoost"],
+#     ["Ridge", "RandomForest", "XGBoost" == "default"],
 #     index=2
 # )
-model_name = "XGBoost"
+model_name = "XGBoost_pipeline_latest.pkl"
 
 # ----------------------------
 # 2. Form Inputs (Categorical)
 # ----------------------------
-property_type = st.selectbox(
-    "Property Type",
-    ["Apartment", "House", "Master", "Duplex", "Triplex", "Penthouse", "Ground",
-     "Student", "Studio",  
-     "Bungalow", "Chalet", "Cottage", "Loft", "Mansion", "Residence", "Villa", 
-     "Business", "Commercial", "Office", "Garage", "Development", "Land"]
-)
-
-building_state = st.selectbox(
-    "Building State",
-    ["Excellent", "Fully renovated", "New", "Normal", "To demolish", "To renovate", 
-     "To restore", "Under construction"]
-)
-
-province = st.selectbox(
-    "Province",
-    ["Antwerp", "Brussels Capital Region", "East Flanders", "Flemish Brabant", "Hainaut", 
-     "Liège", "Limburg", "Luxembourg", "Namur", "Walloon Brabant", "West Flanders"]
-)
-
-locality_name = st.text_input("Locality Name", "Brussels")
-
-build_year_cat = st.selectbox(
-    "Build Year Category",
-    ["1800s", "1950s", "2020s"]
-)
+property_type = st.selectbox("Property Type", PROPERTY_TYPES)
+building_state = st.selectbox("Building State", BUILDING_STATES)
+build_year_cat = st.selectbox("Build Year Category", BUILD_YEAR_CATS)
+province = st.selectbox("Province", PROVINCES)
+locality_name = st.selectbox("Locality", LOCALITY_NAMES)
 
 # ----------------------------
 # 3. Numeric Inputs
@@ -90,8 +70,10 @@ if st.button("Predict Price"):
     }
 
     prediction = call_api(model_name, payload)
+    # st.write("DEBUG:", prediction)
 
-    if "error" in prediction:
-        st.error(prediction["Sorry, an error occurred"])
+    if not prediction or "error" in prediction:
+        st.error(f"❌ API Error: {prediction.get('error', 'Unknown error')}")
     else:
-        st.success(f"Estimated Price: **€{prediction['prediction']:,.0f}**")
+        result = prediction["predictions"][0]
+        st.success(f"💶 Estimated Price: **€ {result:,.0f}** ± € 175,000")
