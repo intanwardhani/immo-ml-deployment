@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Python-14354C?style=flat&logo=python&logoColor=white) ![](https://img.shields.io/badge/Markdown-000000?style=flat&logo=markdown&logoColor=white) ![](https://img.shields.io/badge/macOS-000000?style=flat&logo=apple&logoColor=white) 
+
 # About Me
 Machine learning and deployment were new to me. No doubt, it was daunting and a very intense learning process. However, more than anything, it challenged my patience, conscientiousness, grit, and adaptability in learning something new, complex, and outside of my comfort zone. This project has provided me with not only some hands-on fundamentals of machine-learning and (somewhat) production-ready deployment, but also the structural thinking to tackle future projects. I still have many things to learn and practise (always do), but now I feel equipped to do just that :wink:
 
